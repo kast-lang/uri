@@ -24,6 +24,7 @@
             nodejs
             just
           ];
+          KAST_LIB = "${kast}";
         };
       });
 }

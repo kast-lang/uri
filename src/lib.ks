@@ -35,9 +35,12 @@ impl Uri as module = (
     
     # String representation of the URI
     const to_string = (self :: Uri) -> String => (
-        let mut s = self.scheme;
-        s += ":";
-        if (self.authority |> String.length) > 0 then (
+        let mut s = "";
+        if not is_empty(self.scheme) then (
+            s += self.scheme;
+            s += ":";
+        );
+        if not is_empty(self.authority) then (
             s += "//";
             s += self.authority;
         );
@@ -116,7 +119,7 @@ impl Uri as FromString = {
         );
         
         let authority = (
-            if str |> substring(0, 2) == "//" then (
+            if length(str) >= 2 and str |> substring(0, 2) == "//" then (
                 str = str |> substring(2, length(str) - 2);
                 
                 const restart_this = (o :: Option.t[UInt32]) => Option.map(o, c => { c, c });

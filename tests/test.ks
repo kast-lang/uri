@@ -289,4 +289,17 @@ test(
     :None
 );
 
+test(
+    21,
+    "",
+    {
+        .scheme = "",
+        .authority = "",
+        .path = "",
+        .query = "",
+        .fragment = "",
+    },
+    :None
+);
+
 std.io.print("all tests passed");
